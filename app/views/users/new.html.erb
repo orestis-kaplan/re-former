@@ -1,0 +1,41 @@
+<!-- <form accept-charset="UTF-8" action="/users" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="username">Username</label>
+  <input id="username" type="text" name="user[username]">
+  <label for="pass">Password</label>
+  <input id="pass"type="password" name="user[password]">
+  <label for="mail">Email</label>
+  <input id="mail" type="text" name="user[email]">
+  <input name="commit" type="submit" value="Submit"/>
+</form> -->
+
+<!--
+<%=form_tag("/users", method:"post") do %>
+  <%=label_tag(:username,"Username") %>
+  <%=text_field_tag(:username) %>
+  <%=label_tag(:password,"Password") %>
+  <%=password_field_tag(:password) %>
+  <%=label_tag(:email,"Email") %>
+  <%=text_field_tag(:email) %>
+  <%=submit_tag("Submit") %>
+<% end %> -->
+
+<%= form_for @user do |f| %>
+<ul style="list-style: none;">
+  <li><%=f.label :username,"Your username here" %></li>
+  <li><%=f.text_field :username%></li>
+  <li><%=f.label :password,"Your password here" %></li>
+  <li><%=f.password_field :password %></li>
+  <li><%=f.label :email,"Your email here" %></li>
+  <li><%=f.text_field :email %></li>
+  <li><%=f.submit "Submit"%></li>
+</ul>
+<% end %>
+
+<% if @user.errors.any?  %>
+ <ul style="color:red">
+   <% @user.errors.messages.each do |e|%>
+   <li> <%= "#{e[0]} #{e[1][0]}" %></li>
+    <% end %>
+ </ul>
+ <% end %>
